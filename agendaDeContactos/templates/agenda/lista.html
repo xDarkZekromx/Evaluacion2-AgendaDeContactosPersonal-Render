@@ -1,0 +1,57 @@
+{% extends 'personas/base.html' %}
+
+{% block title %}
+  Lista de Contactos
+{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold mb-4">Lista de Contactos</h1>
+
+  <!-- Barra de Buscador -->
+  <div class="flex justify-end items-center mb-4">
+    <form method="get" action="" class="flex gap-2">
+      <input type="text" name="q" placeholder="Buscar por nombre o correo"
+             value="{{ query }}"
+             class="border border-gray-300 rounded px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <button type="submit"
+              class="bg-blue-500 text-white px-4 py-2 rounded hover:scale-105 transition-all ease-in">
+        Buscar
+      </button>
+    </form>
+  </div>
+
+  <!-- Tabla de contactos -->
+  <table class="min-w-full bg-white">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b">Nombre</th>
+        <th class="py-2 px-4 border-b">Teléfono</th>
+        <th class="py-2 px-4 border-b">Correo</th>
+        <th class="py-2 px-4 border-b">Dirección</th>
+        <th class="py-2 px-4 border-b">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contacto in contactos %}
+        <tr>
+          <td class="py-2 px-4 border-b text-center">{{ contacto.nombre }}</td>
+          <td class="py-2 px-4 border-b text-center">{{ contacto.telefono }}</td>
+          <td class="py-2 px-4 border-b text-center">{{ contacto.correo }}</td>
+          <td class="py-2 px-4 border-b text-center">{{ contacto.direccion }}</td>
+          <td class="py-2 px-4 border-b text-center">
+            <a href="{% url 'detalle_contacto' contacto.id %}"
+               class="bg-blue-500 hover:scale-105 transition-all ease-in px-2 py-1 rounded text-white">
+              Ver
+            </a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5" class="py-2 px-4 text-center text-gray-500">
+            No se encontraron contactos.
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
