@@ -2,9 +2,6 @@ from django.contrib import admin
 from django.db.models import Q        
 from .models import Contacto
 
-# Register your models here.
-
-admin.site.register(Contacto)
 
 # ---- Filtros personalizados ----
 
