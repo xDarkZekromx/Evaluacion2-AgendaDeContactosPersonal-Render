@@ -32,10 +32,9 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 ALLOWED_HOSTS = [
-    ".herokuapp.com",
     "127.0.0.1",
     "localhost",
-    ".onrender.com",
+    ".onrender.com",    
 ]   
 
 
